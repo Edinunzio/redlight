@@ -10,13 +10,16 @@
     <div class="container">
         <div class="row">
             <h1>Red Light Green Light</h1>
-            <div id="id_new_game">Create New Game</div>
-        </div>
-        <div class="row" id="light_container">
-            <div id="id_light_div">Waiting for a challenger</div>
+            <a href="/game/new" id="id_new_game">Create New Game</a>
+        </div>{% block game %}{% endblock %}
+        <!--div class="row" id="light_container">
+            <div id="id_light_div">
+                <p class="wait_message">Waiting for a challenger</p>
+                <div class="light"></div>
+            </div>
             <div id="id_player_1"></div>
             <div id="id_goal_div" name="Destination"></div>
-        </div>
+        </div>-->
         <div class="row">
             <form method="POST"><input name="winner" type="hidden" id="winner" value="Player 1" />{% csrf_token %}</form>
         </div>
@@ -36,6 +39,7 @@
     var new_game_btn = document.getElementById('id_new_game');
     new_game_btn.addEventListener('click', function(){
                 //$('#light_container').append(copy_txt);
+                $('.wait_message').css('display', 'block');
                 new_game_btn.style.display = 'none';
             }
     );

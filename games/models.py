@@ -25,9 +25,6 @@ class Player(object):
     def pause(self):
         self.in_motion = False
 
-    """def winner(self, player):
-        pass"""
-
 
 class Game(object):
 
@@ -52,6 +49,13 @@ class Game(object):
 
     def end_game(self):
         self.status = 'complete'
+
+    def begin_game(self):
+        """
+
+        :return:
+        """
+        pass
 
     def update_status(self, json_data):
         data_dict = json.loads(json_data)

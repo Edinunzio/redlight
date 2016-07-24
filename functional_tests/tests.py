@@ -2,7 +2,7 @@ from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 
-# response_1 = self.client.post('/', {'winner': 'Player 2'})
+
 class FirstPlayerTest(StaticLiveServerTestCase):
 
     def setUp(self):
@@ -22,11 +22,11 @@ class FirstPlayerTest(StaticLiveServerTestCase):
         self.assertIn('Green', header_text)
 
         # Player sees button to start a new game
-        new_game_btn = self.browser.find_element_by_id('id_new_game')
-        self.assertEqual(new_game_btn.text, 'Create New Game')
+        new_game_link = self.browser.find_element_by_id('id_new_game')
+        self.assertEqual(new_game_link.text, 'Create New Game')
 
         # Player clicks new game button to start a new game
-        new_game_btn.click()
+        new_game_link.click()
 
         # Page updates with game elements
         light_div = self.browser.find_element_by_id('light_container')

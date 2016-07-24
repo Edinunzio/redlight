@@ -3,7 +3,7 @@ from django.test import TestCase, Client
 from django.http import HttpRequest
 from django.template.loader import render_to_string
 
-from views import home_page
+from views import home_page, game_screen, game_over
 from models import Player, Game
 
 
@@ -25,6 +25,14 @@ class HomePageTest(TestCase):
         self.assertNotIn('Wins', response_2.content)
         self.assertTemplateUsed(response_1, 'winner.html')
         self.assertTemplateUsed(response_2, 'base.html')
+
+
+class GameScreenTest(TestCase):
+
+    def test_url_resolves_to_game_page(self):
+        response = self.client.get('/game/new/')
+        self.assertTemplateUsed(response, 'game.html')
+
 
 
 class PlayerModelTest(TestCase):

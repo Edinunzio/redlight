@@ -2,7 +2,12 @@
 
 {% block game %}
     <h1>Game</h1>
-    <div id="id_light_div">Waiting for a challenger</div>
-    <div id="id_player_1"></div>
-    <div id="id_goal_div" name="Destination"></div>
+    <div class="row" id="light_container">
+        <div id="id_light_div">
+            <p class="wait_message">Waiting for a challenger</p>
+            <div class="light"></div>
+        </div>
+        <div id="id_player_1"></div>
+        <div id="id_goal_div" name="Destination"></div>
+    </div>
 {% endblock %}

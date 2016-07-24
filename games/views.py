@@ -6,10 +6,14 @@ from models import Player, Game
 def home_page(request):
     winner = request.POST.get('winner', '')
     if winner == '':
-        #game = Game()
         return render(request, 'base.html')
     else:
         return render(request, 'winner.html', {'winner': winner})
+
+
+def game_screen(request):
+    game = Game()
+    return render(request, 'game.html')
 
 
 def game_over(request):
