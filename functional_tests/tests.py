@@ -25,14 +25,14 @@ class FirstPlayerTest(StaticLiveServerTestCase):
         new_game_link = self.browser.find_element_by_id('id_new_game')
         self.assertEqual(new_game_link.text, 'Create New Game')
 
-        # Player clicks new game button to start a new game
+        # Player clicks new game link to start a new game
         new_game_link.click()
 
         # Page updates with game elements
-        light_div = self.browser.find_element_by_id('light_container')
+        """light_div = self.browser.find_element_by_id('light_container')
         player_1 = self.browser.find_element_by_id('id_player_1')
         goal_div = self.browser.find_element_by_id('id_goal_div')
         self.assertIn(light_div.text, 'Waiting for a challenger')
         self.assertIn(goal_div.text, 'Destination')
-
+        """
         self.fail('Finish the test!')

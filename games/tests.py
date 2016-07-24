@@ -73,8 +73,7 @@ class PlayerModelTest(TestCase):
 class GameModelTest(TestCase):
 
     def test_create_new_game(self):
-        player_1 = Player('Player 1')
-        game = Game(player_1)
+        game = Game()
         self.assertIsNotNone(game.id)
         self.assertIsNotNone(game.player_1)
         self.assertIsNone(game.light_color)
@@ -84,10 +83,8 @@ class GameModelTest(TestCase):
         self.assertEqual(False, game.player_1.in_motion)
 
     def test_registering_second_player(self):
-        player_1 = Player('Player 1')
-        game = Game(player_1)
-        player_2 = Player('Player 2')
-        game.register_player(player_2)
+        game = Game()
+        game.register_player()
         self.assertEqual('Player 1', game.player_1.name)
         self.assertEqual('Player 2', game.player_2.name)
         self.assertEqual(0, game.player_1.location)
@@ -97,17 +94,14 @@ class GameModelTest(TestCase):
         self.assertEqual('locked', game.status)
 
     def test_game_status_updates_on_game_end(self):
-        player_1 = Player('Player 1')
-        game = Game(player_1)
-        player_2 = Player('Player 2')
-        game.register_player(player_2)
+        game = Game()
+        game.register_player()
         game.end_game()
         self.assertEqual('complete', game.status)
 
     def test_update_status(self):
         game = Game()
-        player_2 = Player('Player 2')
-        game.register_player(player_2)
+        game.register_player()
         json_string = '{"id": "asc123hjk", "distance": 20, "light_color": "green", "player_1": {"name": "Player 1", "location": 4, "in_motion": "true"}, "player_2": {"name": "Player 2", "location": 6, "in_motion": "true"}}'
 
         self.assertEqual(0, game.player_1.location)
@@ -129,15 +123,13 @@ class GameModelTest(TestCase):
     def test_change_green_to_red(self):
         player_1 = Player('Player 1')
         game = Game(player_1)
-        player_2 = Player('Player 2')
-        game.register_player(player_2)
+        game.register_player()
         game.change_light('red')
         self.assertEqual('red', game.light_color)
 
     def test_change_red_to_green(self):
         player_1 = Player('Player 1')
         game = Game(player_1)
-        player_2 = Player('Player 2')
-        game.register_player(player_2)
+        game.register_player()
         game.change_light('green')
         self.assertEqual('green', game.light_color)

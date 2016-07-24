@@ -1,13 +1,26 @@
 {% extends 'base.html' %}
 
 {% block game %}
-    <h1>Game</h1>
+    <p class="wait_message">Waiting for a challenger</p>
     <div class="row" id="light_container">
-        <div id="id_light_div">
-            <p class="wait_message">Waiting for a challenger</p>
+        <div id="id_light_div" class="col-lg-12 col-md-12">
             <div class="light"></div>
         </div>
-        <div id="id_player_1"></div>
-        <div id="id_goal_div" name="Destination"></div>
+    </div>
+    <div class="row">
+        <div class="track col-lg-10 col-md-10">
+            <div id="id_player_1" class="player"></div>
+        </div>
+        <div class="col-lg-2 col-md-2">
+            <div id="id_goal_div_1" name="Destination"></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="track col-lg-10 col-md-10">
+            <div id="id_player_2" class="player"></div>
+        </div>
+        <div class="col-lg-2 col-md-2">
+            <div id="id_goal_div_2" name="Destination"></div>
+        </div>
     </div>
 {% endblock %}

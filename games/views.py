@@ -22,3 +22,8 @@ def game_over(request):
         losers = request.POST.get('losers', '')
         return JsonResponse({'winner': winner, 'losers': losers})
     return render(request, 'game_over.html')
+
+
+def update_screen(request, json_data):
+    if request.method == 'POST':
+        return JsonResponse({'data': json_data})

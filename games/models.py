@@ -42,9 +42,9 @@ class Game(object):
             sleep(float(duration))
             self.light_color = color
 
-    def register_player(self, player):
+    def register_player(self):
         self.player_2 = Player('Player 2')
-        player.join_game(self.id)
+        self.player_2.join_game(self.id)
         self.status = 'locked'
 
     def end_game(self):
@@ -55,7 +55,15 @@ class Game(object):
 
         :return:
         """
-        pass
+        if self.player_1 and self.player_2:
+            self.game_loop()
+
+    def game_loop(self):
+        while self.status is not 'complete':
+            self.change_light('red')
+            data = self.get_status()
+            self.update_status(data)
+            self.update_screen(data) #  TODO: write jsonresponse to update front end
 
     def update_status(self, json_data):
         data_dict = json.loads(json_data)
