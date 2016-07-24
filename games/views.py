@@ -17,6 +17,11 @@ def game_screen(request):
     return render(request, 'game.html')
 
 
+def game_over(request):
+    game.end_game()
+    return render(request, 'game_over.html')
+
+
 def update_screen(request, json_data):
     if request.method == 'POST':
         return JsonResponse({'data': json_data})

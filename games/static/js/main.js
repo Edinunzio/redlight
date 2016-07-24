@@ -23,11 +23,9 @@ var player_move = function(){
         success: function(data){
             var elem_offset = $('.player').offset();
             elem_offset = elem_offset.left;
-            console.log(elem_offset);
             var elem_left = $('.player').position();
-            console.log(gp);
-            if (elem_offset >= gp){
-                alert(gp);
+            if (elem_offset >= gp - 20){
+                end_game();
                 // game should end
             }
             $('.player').css('left', elem_left.left + 20);
@@ -38,6 +36,21 @@ var player_move = function(){
             }
     })
 };
+
+var end_game = function(){
+    $.ajax({
+        type: "GET",
+        url: "/game/end/",
+        success: function(data){
+            alert('you won!');
+            },
+            error: function(data){
+                console.log(data);
+                alert('Something went wrong!');
+            }
+    })
+};
+
 $(document).ready(function(){
     $('#move').on('click', player_move);
 });
