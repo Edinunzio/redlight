@@ -13,5 +13,6 @@ var abstractAjax = (function(url, info){
         })
 });
 
+(function(){
 
-//var winner = abstractAjax('/winner/', {"winner": "Player 1"});
+}());

@@ -12,14 +12,17 @@ Class-based views
 Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
+
 """
 from django.conf.urls import url
 from django.contrib import admin
-from games.views import home_page, game_screen, game_over
+from games.views import home_page, game_screen, game_over, player_move, player_stop
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', home_page, name='home_page'),
     url(r'^game/new/$', game_screen, name='game_screen'),
+    url(r'^player/stop/$', player_stop, name='player_stop'),
+    url(r'^player/move/$', player_move, name='player_move'),
     url(r'^winner/$', game_over, name='winner'),
 ]

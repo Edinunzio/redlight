@@ -27,6 +27,7 @@ class FirstPlayerTest(StaticLiveServerTestCase):
 
         # Player clicks new game link to start a new game
         new_game_link.click()
+        self.assertEqual(self.browser.current_url, 'http://localhost:8081/game/new/')
 
         # Page updates with game elements
         """light_div = self.browser.find_element_by_id('light_container')
