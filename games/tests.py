@@ -5,8 +5,6 @@ from django.template.loader import render_to_string
 
 from views import home_page
 from models import Player, Game
-import json
-
 
 
 class HomePageTest(TestCase):
@@ -26,11 +24,6 @@ class HomePageTest(TestCase):
         response_2 = home_page(get_request)
         self.assertIn('Wins', response_1.content)
         self.assertNotIn('Wins', response_2.content)
-        expected_html = render_to_string(
-            'winner.html',
-            {'player': 'Player 2'}
-        )
-        self.assertEqual(response_1.content.decode(), expected_html)
         expected_html_2 = render_to_string('base.html')
         self.assertNotIn('Wins', expected_html_2)
 
@@ -41,11 +34,6 @@ class HomePageTest(TestCase):
 
         response = home_page(request)
         self.assertIn('Wins', response.content)
-        expected_html = render_to_string(
-            'winner.html',
-            {'player': 'Player 1'}
-        )
-        self.assertEqual(response.content.decode(), expected_html)
 
 
 class PlayerModelTest(TestCase):

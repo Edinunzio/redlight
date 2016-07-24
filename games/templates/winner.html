@@ -1,10 +1,5 @@
-<!DOCTYPE html>
-<html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title></title>
-</head>
-<body>
-    <div class="winner">{{ player }} Wins</div>
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% block winner %} <div class="winner">{{ player }} Wins</div> {% endblock %}
+
+

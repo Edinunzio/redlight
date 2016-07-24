@@ -3,12 +3,22 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title>Red Light Green Light</title>
+    <link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="/static/css/main.css" rel="stylesheet" media="screen">
 </head>
 <body>
-    <h1>Red Light Green Light</h1>
-    <div id="id_new_game">Create New Game</div>
-    <div id="light_container"></div>
-    <form method="POST"><input name="winner" type="hidden" id="winner" value="Player 1" />{% csrf_token %}</form>
+    <div class="container">
+        <div class="row">
+            <h1>Red Light Green Light</h1>
+            <div id="id_new_game">Create New Game</div>
+        </div>
+        <div class="row">
+            <div id="light_container"></div>
+        </div>
+        <form method="POST"><input name="winner" type="hidden" id="winner" value="Player 1" />{% csrf_token %}</form>
+    </div>
+    {% block winner %}
+    {% endblock %}
 </body>
 <script>
     var light_div = document.createElement('div'['id=id_light_div']);
@@ -21,4 +31,6 @@
             }
     );
 </script>
+<script src="/static/js/jquery.js"></script>
+<script src="/static/bootstrap/js/bootstrap.min.js"></script>
 </html>

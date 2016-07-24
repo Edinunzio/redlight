@@ -19,5 +19,5 @@ from games.views import home_page
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$', home_page, name='home_page')
+    url(r'^$', home_page, name='home_page'),
 ]
