@@ -31,6 +31,8 @@ def update_screen(request, json_data):
 
 
 def player_move(request, player_name):
+    if game.light_color == 'red':
+        game.losers.append(player_name)
     if player_name == 'Player 1':
         game.player_1.move()
         if game.location == game.player_1.location:
@@ -43,10 +45,3 @@ def player_move(request, player_name):
             game.winner = game.player_2
             game.end_game()
             game_over()
-
-
-def player_stop(request, player_name):
-    if player_name == 'Player 1':
-        game.player_1.pause()
-    else:
-        game.player_2.pause()

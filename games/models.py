@@ -23,6 +23,7 @@ class Player(object):
         self.location += 1
 
     def pause(self):
+        sleep(0.25)
         self.in_motion = False
 
 
@@ -35,6 +36,7 @@ class Game(object):
         self.light_color = None
         self.status = 'open'
         self.winner = None
+        self.losers = []
 
     def change_light(self, color):
         self.light_color = 'green'

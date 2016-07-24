@@ -1,8 +1,9 @@
+from time import sleep
 from django.core.urlresolvers import resolve
 from django.test import TestCase
 from django.http import HttpRequest
 
-from views import home_page, player_move, player_stop
+from views import home_page, player_move
 from models import Player, Game
 
 
@@ -39,10 +40,12 @@ class GameScreenTest(TestCase):
         p2 = g.player_2
         self.assertEquals(0, p.location)
         p.move()
+        p.pause()
         self.assertEquals(1, p.location)
-        self.assertEquals(True, p.in_motion)
         p.move()
+        p.pause()
         p.move()
+        p.pause()
         self.assertEquals(3, p.location)
         self.assertEquals(0, p2.location)
 
@@ -72,8 +75,6 @@ class PlayerModelTest(TestCase):
         player_1.move()
         self.assertEqual(1, player_1.location)
         self.assertEqual(True, player_1.in_motion)
-        player_1.pause()
-        self.assertEqual(False, player_1.in_motion)
 
     def test_going_thru_red_light(self):
         player_1 = Player('Player 1')
