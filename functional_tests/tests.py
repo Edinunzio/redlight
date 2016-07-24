@@ -1,8 +1,9 @@
-from django.test import LiveServerTestCase
+from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
 
 # response_1 = self.client.post('/', {'winner': 'Player 2'})
-class FirstPlayerTest(LiveServerTestCase):
+class FirstPlayerTest(StaticLiveServerTestCase):
 
     def setUp(self):
         self.browser = webdriver.Firefox()
@@ -10,7 +11,6 @@ class FirstPlayerTest(LiveServerTestCase):
 
     def tearDown(self):
         self.browser.quit()
-
 
     def test_creates_a_new_game(self):
         # Player one goes to site
