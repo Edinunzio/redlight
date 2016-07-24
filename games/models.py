@@ -41,7 +41,7 @@ class Game(object):
     def change_light(self, color):
         self.light_color = 'green'
         if color != 'green':
-            duration = '{0:.2f}'.format(uniform(0.25, 15))
+            duration = '{0:.2f}'.format(uniform(3.25, 15))
             sleep(float(duration))
             self.light_color = color
 

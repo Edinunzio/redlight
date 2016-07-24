@@ -28,8 +28,7 @@ def player_move(request, player_name):
     else:
         if player_name == "1":
             game.player_1.move()
-            print game.player_1.location
-            if game.distance == game.player_1.location:
+            if game.player_1.location == game.distance:
                 game.winner = game.player_1
                 game.end_game()
                 return render(request, 'game_over.html')
