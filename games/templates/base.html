@@ -12,14 +12,6 @@
             <h1>Red Light Green Light</h1>
             <a href="/game/new" id="id_new_game">Create New Game</a>
         </div>{% block game %}{% endblock %}
-        <!--div class="row" id="light_container">
-            <div id="id_light_div">
-                <p class="wait_message">Waiting for a challenger</p>
-                <div class="light"></div>
-            </div>
-            <div id="id_player_1"></div>
-            <div id="id_goal_div" name="Destination"></div>
-        </div>-->
         <div class="row">
             <form method="POST"><input name="winner" type="hidden" id="winner" value="Player 1" />{% csrf_token %}</form>
         </div>
