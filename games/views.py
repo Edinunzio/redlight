@@ -4,8 +4,13 @@ from models import Player, Game
 
 
 def home_page(request):
-    player = request.POST.get('winner', '')
-    if player == '':
+    """try:
+        game
+    except:
+        game = Game()
+    """
+    winner = request.POST.get('winner', '')
+    if winner == '':
         return render(request, 'base.html')
     else:
-        return render(request, 'winner.html', {'player': player})
+        return render(request, 'winner.html', {'winner': winner})

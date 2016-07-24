@@ -1,5 +1,5 @@
 from django.core.urlresolvers import resolve
-from django.test import TestCase
+from django.test import TestCase, Client
 from django.http import HttpRequest
 from django.template.loader import render_to_string
 
@@ -19,21 +19,12 @@ class HomePageTest(TestCase):
         post_request.method = 'POST'
         get_request.method = 'GET'
         post_request.POST['winner'] = 'Player 2'
-
-        response_1 = home_page(post_request)
-        response_2 = home_page(get_request)
+        response_1 = self.client.post('/', {'winner': 'Player 2'})
+        response_2 = self.client.get('/')
         self.assertIn('Wins', response_1.content)
         self.assertNotIn('Wins', response_2.content)
-        expected_html_2 = render_to_string('base.html')
-        self.assertNotIn('Wins', expected_html_2)
-
-    def test_home_page_winner_POST_request(self):
-        request = HttpRequest()
-        request.method = 'POST'
-        request.POST['winner'] = 'Player 1'
-
-        response = home_page(request)
-        self.assertIn('Wins', response.content)
+        self.assertTemplateUsed(response_1, 'winner.html')
+        self.assertTemplateUsed(response_2, 'base.html')
 
 
 class PlayerModelTest(TestCase):
@@ -60,6 +51,8 @@ class PlayerModelTest(TestCase):
         player_1 = Player('Player 1')
         player_1.move()
         self.assertEqual(1, player_1.location)
+        self.assertEqual(True, player_1.in_motion)
+        player_1.pause()
         self.assertEqual(False, player_1.in_motion)
 
 
@@ -119,3 +112,19 @@ class GameModelTest(TestCase):
         self.assertEqual(20, game.distance)
         self.assertTrue(game.player_1.in_motion)
         self.assertTrue(game.player_2.in_motion)
+
+    def test_change_green_to_red(self):
+        player_1 = Player('Player 1')
+        game = Game(player_1)
+        player_2 = Player('Player 2')
+        game.register_player(player_2)
+        game.change_light('red')
+        self.assertEqual('red', game.light_color)
+
+    def test_change_red_to_green(self):
+        player_1 = Player('Player 1')
+        game = Game(player_1)
+        player_2 = Player('Player 2')
+        game.register_player(player_2)
+        game.change_light('green')
+        self.assertEqual('green', game.light_color)

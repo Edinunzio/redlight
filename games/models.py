@@ -21,7 +21,8 @@ class Player(object):
     def move(self):
         self.in_motion = True
         self.location += 1
-        sleep(.5)
+
+    def pause(self):
         self.in_motion = False
 
     def winner(self, player):
@@ -32,13 +33,20 @@ class Game(object):
 
     def __init__(self, first_player, distance=20):
         self.id = str(uuid4())
-        self.player_1 = first_player
+        self.player_1 = Player()
         self.distance = distance
         self.light_color = None
         self.status = 'open'
 
+    def change_light(self, color):
+        self.light_color = 'green'
+        if color != 'green':
+            duration = '{0:.2f}'.format(uniform(0.25, 15))
+            sleep(float(duration))
+            self.light_color = color
+
     def register_player(self, player):
-        self.player_2 = player
+        self.player_2 = Player('Player 2')
         player.join_game(self.id)
         self.status = 'locked'
 
@@ -46,15 +54,6 @@ class Game(object):
         self.status = 'complete'
 
     def update_status(self, json_data):
-        """
-        json_data = '{
-            "id": "asc123hjk",
-            "distance": 20,
-            "light_color": "green",
-            "player_1": {"name": "Player 1", "location": 4, "in_motion": "true"},
-            "player_2": {"name": "Player 2", "location": 6, "in_motion": "true"}
-        }'
-        """
         data_dict = json.loads(json_data)
         self.player_1.location = data_dict['player_1']['location']
         self.player_2.location = data_dict['player_2']['location']
