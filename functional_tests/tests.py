@@ -1,8 +1,8 @@
+from django.test import LiveServerTestCase
 from selenium import webdriver
-import unittest
 
 
-class FirstPlayerTest(unittest.TestCase):
+class FirstPlayerTest(LiveServerTestCase):
 
     def setUp(self):
         self.browser = webdriver.Firefox()
@@ -13,7 +13,7 @@ class FirstPlayerTest(unittest.TestCase):
 
     def test_creates_a_new_game(self):
         # Player one goes to site
-        self.browser.get('http://localhost:8000')
+        self.browser.get(self.live_server_url)
 
         # Player sees name of game in page title
         self.assertIn('Red', self.browser.title)
@@ -35,6 +35,3 @@ class FirstPlayerTest(unittest.TestCase):
         self.assertIn(goal_div.text, 'Destination')
 
         self.fail('Finish the test!')
-
-if __name__ == '__main__':
-    unittest.main()
