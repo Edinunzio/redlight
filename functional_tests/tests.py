@@ -29,10 +29,10 @@ class FirstPlayerTest(StaticLiveServerTestCase):
         self.assertEqual(self.browser.current_url, 'http://localhost:8081/game/new/')
 
         # Page updates with game elements
-        """light_div = self.browser.find_element_by_id('light_container')
+        light_div = self.browser.find_element_by_id('light_container')
         player_1 = self.browser.find_element_by_id('id_player_1')
-        goal_div = self.browser.find_element_by_id('id_goal_div')
+        goal_div = self.browser.find_element_by_id('id_goal_div_1')
         self.assertIn(light_div.text, 'Waiting for a challenger')
         self.assertIn(goal_div.text, 'Destination')
-        """
+
         self.fail('Finish the test!')

@@ -22,6 +22,6 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', home_page, name='home_page'),
     url(r'^game/new/$', game_screen, name='game_screen'),
-    url(r'^player/move/$', player_move, name='player_move'),
+    url(r'^player/move/(.+)$', player_move, name='player_move'),
     url(r'^winner/$', game_over, name='winner'),
 ]
