@@ -34,6 +34,7 @@ class Game(object):
         self.distance = distance
         self.light_color = None
         self.status = 'open'
+        self.winner = None
 
     def change_light(self, color):
         self.light_color = 'green'

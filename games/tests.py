@@ -2,7 +2,7 @@ from django.core.urlresolvers import resolve
 from django.test import TestCase
 from django.http import HttpRequest
 
-from views import home_page
+from views import home_page, player_move, player_stop
 from models import Player, Game
 
 
@@ -31,6 +31,20 @@ class GameScreenTest(TestCase):
     def test_url_resolves_to_game_page(self):
         response = self.client.get('/game/new/')
         self.assertTemplateUsed(response, 'game.html')
+
+    def test_player_move(self):
+        g = Game()
+        g.register_player()
+        p = g.player_1
+        p2 = g.player_2
+        self.assertEquals(0, p.location)
+        p.move()
+        self.assertEquals(1, p.location)
+        self.assertEquals(True, p.in_motion)
+        p.move()
+        p.move()
+        self.assertEquals(3, p.location)
+        self.assertEquals(0, p2.location)
 
 
 class PlayerModelTest(TestCase):
