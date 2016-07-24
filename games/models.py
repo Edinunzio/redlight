@@ -25,13 +25,13 @@ class Player(object):
     def pause(self):
         self.in_motion = False
 
-    def winner(self, player):
-        pass
+    """def winner(self, player):
+        pass"""
 
 
 class Game(object):
 
-    def __init__(self, first_player, distance=20):
+    def __init__(self, distance=20):
         self.id = str(uuid4())
         self.player_1 = Player()
         self.distance = distance

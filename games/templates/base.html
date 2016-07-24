@@ -12,25 +12,32 @@
             <h1>Red Light Green Light</h1>
             <div id="id_new_game">Create New Game</div>
         </div>
-        <div class="row">
-            <div id="light_container"></div>
+        <div class="row" id="light_container">
+            <div id="id_light_div">Waiting for a challenger</div>
+            <div id="id_player_1"></div>
+            <div id="id_goal_div" name="Destination"></div>
         </div>
-        <form method="POST"><input name="winner" type="hidden" id="winner" value="Player 1" />{% csrf_token %}</form>
+        <div class="row">
+            <form method="POST"><input name="winner" type="hidden" id="winner" value="Player 1" />{% csrf_token %}</form>
+        </div>
+        <div class="row">
+            {% block winner %}
+            {% endblock %}
+        </div>
     </div>
-    {% block winner %}
-    {% endblock %}
+
 </body>
+
+<script src="/static/js/jquery.js"></script>
+<script src="/static/bootstrap/js/bootstrap.min.js"></script>
+<script src="/static/js/main.js"></script>
 <script>
-    var light_div = document.createElement('div'['id=id_light_div']);
-    var copy_txt = 'Waiting for a challenger</div><div id="id_player_1"></div><div id="id_goal_div" name="Destination">'
-    var light_container = document.getElementById('light_container');
+    //var copy_txt = '<div id="id_light_div">Waiting for a challenger</div><div id="id_player_1"></div><div id="id_goal_div" name="Destination"></div>';
     var new_game_btn = document.getElementById('id_new_game');
     new_game_btn.addEventListener('click', function(){
-                light_container.innerHTML += copy_txt;
+                //$('#light_container').append(copy_txt);
                 new_game_btn.style.display = 'none';
             }
     );
 </script>
-<script src="/static/js/jquery.js"></script>
-<script src="/static/bootstrap/js/bootstrap.min.js"></script>
 </html>

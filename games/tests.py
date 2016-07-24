@@ -55,6 +55,12 @@ class PlayerModelTest(TestCase):
         player_1.pause()
         self.assertEqual(False, player_1.in_motion)
 
+    def test_going_thru_red_light(self):
+        player_1 = Player('Player 1')
+        player_1.location = 3
+        player_1.in_motion = True
+        self.assertTrue(player_1.in_motion)
+
 
 class GameModelTest(TestCase):
 
@@ -91,8 +97,7 @@ class GameModelTest(TestCase):
         self.assertEqual('complete', game.status)
 
     def test_update_status(self):
-        player_1 = Player('Player 1')
-        game = Game(player_1)
+        game = Game()
         player_2 = Player('Player 2')
         game.register_player(player_2)
         json_string = '{"id": "asc123hjk", "distance": 20, "light_color": "green", "player_1": {"name": "Player 1", "location": 4, "in_motion": "true"}, "player_2": {"name": "Player 2", "location": 6, "in_motion": "true"}}'
