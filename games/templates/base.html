@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Red Light Green Light</title>
+</head>
+<body>
+    <h1>Red Light Green Light</h1>
+    <div id="id_new_game">Create New Game</div>
+    <div id="light_container"></div>
+    <form method="POST"><input name="winner" type="hidden" id="winner" value="Player 1" />{% csrf_token %}</form>
+</body>
+<script>
+    var light_div = document.createElement('div'['id=id_light_div']);
+    var copy_txt = 'Waiting for a challenger</div><div id="id_player_1"></div><div id="id_goal_div" name="Destination">'
+    var light_container = document.getElementById('light_container');
+    var new_game_btn = document.getElementById('id_new_game');
+    new_game_btn.addEventListener('click', function(){
+                light_container.innerHTML += copy_txt;
+                new_game_btn.style.display = 'none';
+            }
+    );
+</script>
+</html>
