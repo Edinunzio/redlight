@@ -11,13 +11,16 @@
         <div class="row">
             <h1>Red Light Green Light</h1>
 
-        </div>{% block game %}<a href="/game/new" id="id_new_game">Create New Game</a>{% endblock %}
+        </div>
+        <div class="row">
+            {% block game_over %}{% endblock %}
+        </div>
+        {% block game %}<a href="/game/new" id="id_new_game">Create New Game</a>{% endblock %}
         <div class="row">
             <form method="POST"><input name="winner" type="hidden" id="winner" value="Player 1" />{% csrf_token %}</form>
         </div>
         <div class="row">
-            {% block winner %}
-            {% endblock %}
+            {% block winner %}{% endblock %}
         </div>
     </div>
 

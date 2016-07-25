@@ -18,8 +18,8 @@ def game_screen(request):
 
 
 def game_over(request):
-    game.end_game()
-    return render(request, 'game_over.html')
+    message = 'GAME OVER, MAN, GAME OVER!'
+    return render(request, 'game_over.html', {'message': message})
 
 
 def update_screen(request, json_data):

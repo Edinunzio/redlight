@@ -25,7 +25,8 @@ var player_move = function(){
             elem_offset = elem_offset.left;
             var elem_left = $('.player').position();
             if (elem_offset >= gp - 20){
-                end_game();
+                location.replace("/game/end/");
+                //end_game();
                 // game should end
             }
             $('.player').css('left', elem_left.left + 20);
@@ -37,19 +38,6 @@ var player_move = function(){
     })
 };
 
-var end_game = function(){
-    $.ajax({
-        type: "GET",
-        url: "/game/end/",
-        success: function(data){
-            alert('you won!');
-            },
-            error: function(data){
-                console.log(data);
-                alert('Something went wrong!');
-            }
-    })
-};
 
 $(document).ready(function(){
     $('#move').on('click', player_move);
