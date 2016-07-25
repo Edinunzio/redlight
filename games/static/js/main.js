@@ -1,17 +1,3 @@
-var abstractAjax = (function(url, info){
-    $.ajax({
-            type: "POST",
-            url: url, //url: '/edit_distance/',
-            data: info,
-            dataType: 'json',
-            success: function(data){
-                console.log(data);
-            },
-            error: function(data){
-                alert('An error has occurred');
-            }
-        })
-});
 var goal_position = $('#id_goal_div_1').offset();
 var gp = goal_position.left;
 
@@ -26,8 +12,6 @@ var player_move = function(){
             var elem_left = $('.player').position();
             if (elem_offset >= gp - 20){
                 location.replace("/game/end/");
-                //end_game();
-                // game should end
             }
             $('.player').css('left', elem_left.left + 20);
             },
@@ -38,7 +22,24 @@ var player_move = function(){
     })
 };
 
+function generate_random_int(min, max) {
+  return Math.floor(Math.random() * (max - min)) + min;
+}
 
 $(document).ready(function(){
     $('#move').on('click', player_move);
+    var light = $('.light');
+    //var intervalID = window.setTimeout(green_to_red, 1000);
+    var iter_rate = generate_random_int(1000, 500000);
+    var intervalID = window.setTimeout(green_to_red, iter_rate);
+    //red_to_green();
+    function green_to_red() {
+        $(light).removeClass('green');
+        $(light).addClass('red');
+    }
+    function red_to_green() {
+        $(light).removeClass('red');
+        $(light).addClass('green');
+    }
+
 });

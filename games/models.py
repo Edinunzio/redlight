@@ -1,6 +1,5 @@
 from __future__ import unicode_literals
 from time import sleep
-from django.db import models
 from uuid import uuid4
 from random import uniform
 import json
@@ -54,10 +53,6 @@ class Game(object):
         self.status = 'complete'
 
     def begin_game(self):
-        """
-
-        :return:
-        """
         if self.player_1 and self.player_2:
             self.game_loop()
 

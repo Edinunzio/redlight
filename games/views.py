@@ -18,6 +18,7 @@ def game_screen(request):
 
 
 def game_over(request):
+    game.end_game()
     message = 'GAME OVER, MAN, GAME OVER!'
     return render(request, 'game_over.html', {'message': message})
 
@@ -33,15 +34,14 @@ def player_move(request, player_name):
     else:
         if player_name == "1":
             game.player_1.move()
-            if game.player_1.location == game.distance:
+            if game.player_1.location >= game.distance:
                 game.winner = game.player_1
                 game.end_game()
                 return render(request, 'game_over.html')
         else:
             game.player_2.move()
-            if game.distance == game.player_2.location:
+            if game.distance >= game.player_2.location:
                 game.winner = game.player_2
                 game.end_game()
                 return render(request, 'game_over.html')
     return render(request, 'game.html')
-    #return JsonResponse({'data': data})
