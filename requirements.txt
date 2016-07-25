@@ -1,3 +1,4 @@
 Django==1.9.8
+gunicorn==19.6.0
 selenium==2.53.6
 wsgiref==0.1.2
